@@ -1,5 +1,5 @@
 username_controller = "admin"
-password_controller = ""
-controller_ip = ""
-aws_account_name = ""
+password_controller = "Shahzad123!"
+controller_ip = "controller.shahzad.info"
+aws_account_name = "shahzad-aws"
 
