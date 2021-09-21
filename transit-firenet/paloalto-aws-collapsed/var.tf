@@ -19,6 +19,7 @@ variable "controller_ip" {
 variable "aws_account_name" {
   type        = string
   description = "AWS Account Name"
+  default = "shahzad-aws"
 }
 
 variable "aws_region" {
