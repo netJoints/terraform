@@ -65,13 +65,13 @@ variable "spoke2_cidr" {
 
 variable "transit_firenet_gw_name" {
   description = "Transit FireNet Gateway Name"
-  default     = "TR-FNET1-GWLB"
+  default     = "TR-FNET1-GW"
 }
 
 
 variable "PAN_firewall" {
   description = "Firewall Instance Name"
-  default     = "GWLB-PAN-TRFNET"
+  default     = "PAN-TRFNET-NGFW1"
 }
 
 
@@ -79,11 +79,11 @@ variable "PAN_firewall" {
 
 variable "spoke1_gw_name" {
   description = "Spoke1 Gateway Name"
-  default     = "PROD1-SPK-GWLB"
+  default     = "PROD1-SPK-GW"
 }
 
 
 variable "spoke2_gw_name" {
   description = "Spoke 2 Gateway Name"
-  default     = "DEV1-SPK-GWLB"
+  default     = "DEV1-SPK-GW"
 }
