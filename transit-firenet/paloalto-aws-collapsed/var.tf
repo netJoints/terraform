@@ -8,10 +8,12 @@ variable "username_controller" {
 
 variable password_controller {
   description = "Aviatrix Controller's Password"
+  default = "Shahzad123!"
 }
 
 variable "controller_ip" {
   description = "Aviatrix Controller's IP Address"
+  default = "controller.shahzad.info"
 }
 
 variable "aws_account_name" {
