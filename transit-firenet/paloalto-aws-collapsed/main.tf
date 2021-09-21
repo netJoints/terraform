@@ -21,9 +21,9 @@ provider "aviatrix" {
     password = var.password_controller
 }
 
-//VPC SECION
+//VPC SECTION
 
-# Create an AWS VPC for Transit FireNet
+# Create an AWS VPC for Aviatrix Transit FireNet
 resource "aviatrix_vpc" "AVX_TR_FNET1_VPC" {
     cloud_type = 1
     account_name = var.aws_account_name
@@ -60,7 +60,7 @@ resource "aviatrix_vpc" "AVX_DEV1_FNET1_VPC" {
 
 
 # Create an Aviatrix Transit Gateway in AWS
-resource "aviatrix_transit_gateway" "TR_FNET1_GWLB" {
+resource "aviatrix_transit_gateway" "TR_FNET1" {
     gw_name = var.transit_firenet_gw_name
     vpc_id = aviatrix_vpc.AVX_TR_FNET1_VPC.vpc_id
     cloud_type = 1
@@ -78,7 +78,7 @@ resource "aviatrix_transit_gateway" "TR_FNET1_GWLB" {
 }
 
 # Create an Spoke Gateway (DEV1) in AWS
-resource "aviatrix_spoke_gateway" "DEV1_SPK_GWLB" {
+resource "aviatrix_spoke_gateway" "DEV1_SPK" {
     gw_name = var.spoke2_gw_name
     vpc_id = aviatrix_vpc.AVX_DEV1_FNET1_VPC.vpc_id
     cloud_type = 1
@@ -94,7 +94,7 @@ resource "aviatrix_spoke_gateway" "DEV1_SPK_GWLB" {
 }
 
 # Create an Aviatrix Spoke Gateway (PROD1) in AWS
-resource "aviatrix_spoke_gateway" "PROD1_SPK_GWLB" {
+resource "aviatrix_spoke_gateway" "PROD1_SPK" {
     gw_name = var.spoke1_gw_name
     vpc_id = aviatrix_vpc.AVX_SPK1_FNET1_VPC.vpc_id
     cloud_type = 1
@@ -114,13 +114,13 @@ resource "aviatrix_spoke_gateway" "PROD1_SPK_GWLB" {
 
 # Attach Spokes with Transit Gateway
 resource "aviatrix_spoke_transit_attachment" "spoke1_transit_attachment" {
-    spoke_gw_name = aviatrix_spoke_gateway.PROD1_SPK_GWLB.gw_name
-    transit_gw_name = aviatrix_transit_gateway.TR_FNET1_GWLB.gw_name
+    spoke_gw_name = aviatrix_spoke_gateway.PROD1_SPK.gw_name
+    transit_gw_name = aviatrix_transit_gateway.TR_FNET1.gw_name
 }
 
 resource "aviatrix_spoke_transit_attachment" "spoke2_transit_attachment" {
-    spoke_gw_name = aviatrix_spoke_gateway.DEV1_SPK_GWLB.gw_name
-    transit_gw_name = aviatrix_transit_gateway.TR_FNET1_GWLB.gw_name
+    spoke_gw_name = aviatrix_spoke_gateway.DEV1_SPK.gw_name
+    transit_gw_name = aviatrix_transit_gateway.TR_FNET1.gw_name
 }
 
 
@@ -128,14 +128,14 @@ resource "aviatrix_spoke_transit_attachment" "spoke2_transit_attachment" {
 
 resource "aviatrix_transit_firenet_policy" "transit_firenet_policy_2" {
     transit_firenet_gateway_name = aviatrix_transit_gateway.TR_FNET1_GWLB.gw_name
-    inspected_resource_name = "SPOKE:${aviatrix_spoke_gateway.DEV1_SPK_GWLB.gw_name}"
+    inspected_resource_name = "SPOKE:${aviatrix_spoke_gateway.DEV1_SPK.gw_name}"
 
     depends_on = [aviatrix_spoke_transit_attachment.spoke2_transit_attachment]
 }
 
 resource "aviatrix_transit_firenet_policy" "transit_firenet_policy_1" {
-    transit_firenet_gateway_name = aviatrix_transit_gateway.TR_FNET1_GWLB.gw_name
-    inspected_resource_name = "SPOKE:${aviatrix_spoke_gateway.PROD1_SPK_GWLB.gw_name}"
+    transit_firenet_gateway_name = aviatrix_transit_gateway.TR_FNET1.gw_name
+    inspected_resource_name = "SPOKE:${aviatrix_spoke_gateway.PROD1_SPK.gw_name}"
 
     depends_on = [aviatrix_spoke_transit_attachment.spoke1_transit_attachment]
 }
@@ -144,7 +144,7 @@ resource "aviatrix_transit_firenet_policy" "transit_firenet_policy_1" {
 // Advanced Firewall Network
 
 resource "aviatrix_firenet" "PAN_firenet" {
-    vpc_id = aviatrix_transit_gateway.TR_FNET1_GWLB.vpc_id
+    vpc_id = aviatrix_transit_gateway.TR_FNET1.vpc_id
     inspection_enabled = true
     egress_enabled = true
     manage_firewall_instance_association = false
@@ -156,17 +156,17 @@ resource "aviatrix_firenet" "PAN_firenet" {
 resource "aviatrix_firewall_instance" "PAN_firewall" {
     firewall_name = var.PAN_firewall
     firewall_size = "m5.xlarge"
-    vpc_id = aviatrix_transit_gateway.TR_FNET1_GWLB.vpc_id
+    vpc_id = aviatrix_transit_gateway.TR_FNET1.vpc_id
     firewall_image = "Palo Alto Networks VM-Series Next-Generation Firewall Bundle 1"
     firewall_image_version = "10.0.3"
     egress_subnet = aviatrix_vpc.AVX_TR_FNET1_VPC.public_subnets[3].cidr
-    firenet_gw_name = aviatrix_transit_gateway.TR_FNET1_GWLB.gw_name
+    firenet_gw_name = aviatrix_transit_gateway.TR_FNET1.gw_name
     management_subnet = aviatrix_vpc.AVX_TR_FNET1_VPC.public_subnets[2].cidr
 }
 
 resource "aviatrix_firewall_instance_association" "PAN_firewall_instance_association" {
-    vpc_id = aviatrix_transit_gateway.TR_FNET1_GWLB.vpc_id
-    firenet_gw_name = aviatrix_transit_gateway.TR_FNET1_GWLB.gw_name
+    vpc_id = aviatrix_transit_gateway.TR_FNET1.vpc_id
+    firenet_gw_name = aviatrix_transit_gateway.TR_FNET1.gw_name
     instance_id = aviatrix_firewall_instance.PAN_firewall.instance_id
     firewall_name = aviatrix_firewall_instance.PAN_firewall.firewall_name
     lan_interface = aviatrix_firewall_instance.PAN_firewall.lan_interface
