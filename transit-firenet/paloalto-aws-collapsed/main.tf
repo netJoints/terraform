@@ -127,7 +127,7 @@ resource "aviatrix_spoke_transit_attachment" "spoke2_transit_attachment" {
 // FireNet Inspection Policy
 
 resource "aviatrix_transit_firenet_policy" "transit_firenet_policy_2" {
-    transit_firenet_gateway_name = aviatrix_transit_gateway.TR_FNET1_GWLB.gw_name
+    transit_firenet_gateway_name = aviatrix_transit_gateway.TR_FNET1.gw_name
     inspected_resource_name = "SPOKE:${aviatrix_spoke_gateway.DEV1_SPK.gw_name}"
 
     depends_on = [aviatrix_spoke_transit_attachment.spoke2_transit_attachment]
