@@ -8,7 +8,7 @@ variable "username_controller" {
 
 variable password_controller {
   description = "Aviatrix Controller's Password"
-  default = "Shahzad123!"
+  default = "password"
 }
 
 variable "controller_ip" {
