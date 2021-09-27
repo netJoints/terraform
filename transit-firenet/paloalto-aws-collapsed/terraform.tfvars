@@ -1,5 +1,5 @@
 username_controller = "admin"
 password_controller = "password"
-controller_ip = "controller.shahzad.info"
+controller_ip = "controller.ip.address"
 aws_account_name = "shahzad-aws"
 
