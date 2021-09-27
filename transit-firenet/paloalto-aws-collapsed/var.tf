@@ -13,7 +13,7 @@ variable password_controller {
 
 variable "controller_ip" {
   description = "Aviatrix Controller's IP Address"
-  default = "controller.shahzad.info"
+  default = "controller.ip.address"
 }
 
 variable "aws_account_name" {
