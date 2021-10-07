@@ -3,7 +3,7 @@
 variable "username_controller" {
   type        = string
   description = "Aviatrix Controller's Username"
-  default     = "admin"
+  default     = ""
 }
 
 variable password_controller {
@@ -19,7 +19,7 @@ variable "controller_ip" {
 variable "aws_account_name" {
   type        = string
   description = "AWS Account Name"
-  default = "shahzad-aws"
+  default = ""
 }
 
 variable "aws_region" {
