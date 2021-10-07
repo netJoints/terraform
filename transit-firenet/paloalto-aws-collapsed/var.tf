@@ -1,20 +1,20 @@
 //Controller and Generic VARIABLES
 
-variable "username_controller" {
-  type        = string
-  description = "Aviatrix Controller's Username"
-  default     = "admin"
-}
+# variable "username_controller" {
+#  type        = string
+#  description = "Aviatrix Controller's Username"
+#  default     = "admin"
+# }
 
-variable password_controller {
-  description = "Aviatrix Controller's Password"
-  default = "password"
-}
+# variable password_controller {
+#  description = "Aviatrix Controller's Password"
+#  default = "password"
+# }
 
-variable "controller_ip" {
-  description = "Aviatrix Controller's IP Address"
-  default = "ip_address"
-}
+# variable "controller_ip" {
+#  description = "Aviatrix Controller's IP Address"
+#  default = "ip_address"
+# }
 
 variable "aws_account_name" {
   type        = string
