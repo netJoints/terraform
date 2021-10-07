@@ -17,8 +17,8 @@ terraform {
 
 provider "aviatrix" {
     controller_ip = var.controller_ip
-    username = var.username_controller
-    password = var.password_controller
+    username = var.username
+    password = var.password
 }
 
 //VPC SECTION
