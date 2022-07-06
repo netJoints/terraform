@@ -28,7 +28,7 @@ provider "aviatrix" {
    # skip_version_validation = false
 }
 
-module "mc_transit" {
+module "mc-transit" {
   source  = "terraform-aviatrix-modules/mc-transit/aviatrix"
   version = "v2.1.3"
 
@@ -36,15 +36,15 @@ module "mc_transit" {
   cidr                   = "10.1.0.0/23"
   region                 = "us-central1"
   account                = "shahzad-gcp"
-  name                   = "gcp_transit_gw"
+  name                   = "gcp-transit-gw"
   enable_transit_firenet = true
 }
 
-module "firenet_1" {
+module "firenet1" {
   source  = "terraform-aviatrix-modules/mc-firenet/aviatrix"
   version = "v1.1.1"
 
-  transit_module = module.mc_transit
+  transit_module = module.mc-transit
   firewall_image = "Palo Alto Networks VM-Series Next-Generation Firewall Bundle 1"
 }
 
@@ -58,7 +58,7 @@ module "gcp-spoke1" {
   cidr            = "10.1.100.0/24"
   region          = "us-central1"
   account         = "shahzad-gcp"
-  transit_gw      = "gcp_transit_gw"
+  transit_gw      = "gcp-transit-gw"
 }
 
 module "gcp-spoke2" {
@@ -69,7 +69,7 @@ module "gcp-spoke2" {
   cidr            = "10.2.100.0/24"
   region          = "us-central1"
   account         = "shahzad-gcp"
-  transit_gw      = "gcp_transit_gw"
+  transit_gw      = "gcp-transit-gw"
 }
 
 
