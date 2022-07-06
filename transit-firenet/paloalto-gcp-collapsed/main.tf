@@ -7,7 +7,7 @@ terraform {
   required_providers {
     aviatrix = {
       source = "AviatrixSystems/aviatrix"
-      version = "2.21.1-6.6.ga"
+      version = "~>2.21.1-6.6.ga"
     }
   }
   required_version = ">= 1.0.0"
