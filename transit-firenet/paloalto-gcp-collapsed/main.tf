@@ -8,12 +8,12 @@ provider "aviatrix" {
     controller_ip = var.controller_ip
     username = var.username
     password = var.password
-    skip_version_validation = false
+   # skip_version_validation = false
 }
 
 module "gcp_transit_firenet" {
   source                  = "terraform-aviatrix-modules/gcp-transit-firenet/aviatrix"
-  version                 = "3.0.0"
+ # version                 = "3.0.0"
   account                 = "Shahzad-GCP"
   transit_cidr            = "10.0.0.0/24" 
   firewall_cidr           = "10.0.1.0/26"
@@ -25,8 +25,7 @@ module "gcp_transit_firenet" {
 
 module "gcp-spoke1" {
   source  = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-  version = "1.2.3"
-
+#  version = "1.2.3"
   cloud           = "gcp"
   name            = "gcp-spoke1"
   cidr            = "10.1.100.0/24"
@@ -38,8 +37,7 @@ module "gcp-spoke1" {
 
 module "gcp-spoke2" {
   source  = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-  version = "1.2.3"
-
+#  version = "1.2.3"
   cloud           = "gcp"
   name            = "gcp-spoke1"
   cidr            = "10.2.100.0/24"
