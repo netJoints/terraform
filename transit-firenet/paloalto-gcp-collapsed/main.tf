@@ -25,7 +25,7 @@ module "gcp_transit_firenet" {
 
 module "gcp-spoke1" {
   source  = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-  version = "1.2.4"
+  version = "1.2.3"
 
   cloud           = "gcp"
   name            = "gcp-spoke1"
@@ -38,7 +38,7 @@ module "gcp-spoke1" {
 
 module "gcp-spoke2" {
   source  = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-  version = "1.2.4"
+  version = "1.2.3"
 
   cloud           = "gcp"
   name            = "gcp-spoke1"
