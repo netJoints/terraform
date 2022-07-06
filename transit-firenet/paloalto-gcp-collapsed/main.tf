@@ -49,7 +49,6 @@ module "gcp-spoke1" {
   region          = "us-central-1"
   account         = "Shahzad-GCP"
   transit_gw      = module.framework.transit["transit1"].transit_gateway.gw_name
-  security_domain = "blue"
 }
 
 module "gcp-spoke2" {
@@ -61,7 +60,6 @@ module "gcp-spoke2" {
   region          = "us-central-1"
   account         = "Shahzad-GCP"
   transit_gw      = module.framework.transit["transit1"].transit_gateway.gw_name
-  security_domain = "blue"
 }
 
 
