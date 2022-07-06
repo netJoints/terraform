@@ -42,7 +42,7 @@ module "gcp_transit_firenet" {
 
 module "gcp-spoke1" {
   source  = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-#  version = "1.2.3"
+  version = "1.2.3"
   cloud           = "gcp"
   name            = "gcp-spoke1"
   cidr            = "10.1.100.0/24"
@@ -53,7 +53,7 @@ module "gcp-spoke1" {
 
 module "gcp-spoke2" {
   source  = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-#  version = "1.2.3"
+  version = "1.2.3"
   cloud           = "gcp"
   name            = "gcp-spoke1"
   cidr            = "10.2.100.0/24"
