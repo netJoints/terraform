@@ -1,8 +1,14 @@
+# Specify Aviatrix as the provider with these parameters:
+# controller_ip - public IP address of the controller
+# username - login user name, default is admin
+# password - password
+# version - release version # of Aviatrix Terraform provider
+
 provider "aviatrix" {
-  controller_ip           = controller.netjoints.com
-  username                = admin
-  password                = Password1
-  skip_version_validation = false
+    controller_ip = var.controller_ip
+    username = var.username
+    password = var.password
+    skip_version_validation = false
 }
 
 module "gcp_transit_firenet" {
