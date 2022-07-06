@@ -29,7 +29,7 @@ module "gcp-spoke1" {
 
   cloud           = "gcp"
   name            = "gcp-spoke1"
-  cidr            = 10.1.100.0/24
+  cidr            = "10.1.100.0/24"
   region          = "us-central-1"
   account         = "Shahzad-GCP"
   transit_gw      = module.framework.transit["transit1"].transit_gateway.gw_name
@@ -42,7 +42,7 @@ module "gcp-spoke2" {
 
   cloud           = "gcp"
   name            = "gcp-spoke1"
-  cidr            = 10.2.100.0/24
+  cidr            = "10.2.100.0/24"
   region          = "us-central-1"
   account         = "Shahzad-GCP"
   transit_gw      = module.framework.transit["transit1"].transit_gateway.gw_name
