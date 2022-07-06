@@ -1,3 +1,20 @@
+
+# Best-Pratice: Put this version info in version.tf file
+# I am using is here for quick and easy read
+
+
+terraform {
+  required_providers {
+    aviatrix = {
+      source = "AviatrixSystems/aviatrix"
+      version = "2.21.1-6.6.ga"
+    }
+  }
+  required_version = ">= 1.0.0"
+}
+
+
+
 # Specify Aviatrix as the provider with these parameters:
 # controller_ip - public IP address of the controller
 # username - login user name, default is admin
