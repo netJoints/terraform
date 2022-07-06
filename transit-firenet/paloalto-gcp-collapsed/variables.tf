@@ -7,7 +7,7 @@
   default     = ""
  }
 
- variable password {
+ variable "password" {
   description = "Aviatrix Controller's Password"
   default = ""
  }
