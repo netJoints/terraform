@@ -64,7 +64,7 @@ module "gcp-spoke2" {
   source  = "terraform-aviatrix-modules/mc-spoke/aviatrix"
   version = "1.2.3"
   cloud           = "gcp"
-  name            = "gcp-spoke1"
+  name            = "gcp-spoke2"
   cidr            = "10.2.100.0/24"
   region          = "us-central1"
   account         = "shahzad-gcp"
