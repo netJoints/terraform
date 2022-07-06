@@ -28,16 +28,25 @@ provider "aviatrix" {
    # skip_version_validation = false
 }
 
-module "gcp_transit_firenet" {
-  source                  = "terraform-aviatrix-modules/gcp-transit-firenet/aviatrix"
- # version                 = "3.0.0"
-  account                 = "Shahzad-GCP"
-  transit_cidr            = "10.0.0.0/24" 
-  firewall_cidr           = "10.0.1.0/26"
-  region                  = "us-central-1"
-  firewall_image          = "Palo Alto Networks VM-Series Next-Generation Firewall BYOL~9.1.3"
+module "mc_transit" {
+  source  = "terraform-aviatrix-modules/mc-transit/aviatrix"
+  version = "v2.1.3"
+
+  cloud                  = "GCP"
+  cidr                   = "10.1.0.0/23"
+  region                 = "us-central-1"
+  account                = "shahzad-gcp"
+  enable_transit_firenet = true
 }
-  
+
+module "firenet_1" {
+  source  = "terraform-aviatrix-modules/mc-firenet/aviatrix"
+  version = "v1.1.1"
+
+  transit_module = module.mc_transit
+  firewall_image = "Palo Alto Networks VM-Series Next-Generation Firewall Bundle 1"
+}
+
   
 
 module "gcp-spoke1" {
@@ -47,7 +56,7 @@ module "gcp-spoke1" {
   name            = "gcp-spoke1"
   cidr            = "10.1.100.0/24"
   region          = "us-central-1"
-  account         = "Shahzad-GCP"
+  account         = "shahzad-gcp"
   transit_gw      = "gcp_transit_firenet"
 }
 
@@ -58,7 +67,7 @@ module "gcp-spoke2" {
   name            = "gcp-spoke1"
   cidr            = "10.2.100.0/24"
   region          = "us-central-1"
-  account         = "Shahzad-GCP"
+  account         = "shahzad-gcp"
   transit_gw      = "gcp_transit_firenet"
 }
 
