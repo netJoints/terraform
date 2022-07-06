@@ -36,6 +36,7 @@ module "mc_transit" {
   cidr                   = "10.1.0.0/23"
   region                 = "us-central1"
   account                = "shahzad-gcp"
+  name                   = "gcp_transit_gw"
   enable_transit_firenet = true
 }
 
@@ -57,7 +58,7 @@ module "gcp-spoke1" {
   cidr            = "10.1.100.0/24"
   region          = "us-central1"
   account         = "shahzad-gcp"
-  transit_gw      = "gcp_transit_firenet"
+  transit_gw      = "gcp_transit_gw"
 }
 
 module "gcp-spoke2" {
@@ -68,7 +69,7 @@ module "gcp-spoke2" {
   cidr            = "10.2.100.0/24"
   region          = "us-central1"
   account         = "shahzad-gcp"
-  transit_gw      = "gcp_transit_firenet"
+  transit_gw      = "gcp_transit_gw"
 }
 
 
