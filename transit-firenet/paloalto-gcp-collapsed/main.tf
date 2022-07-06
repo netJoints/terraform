@@ -13,7 +13,7 @@ provider "aviatrix" {
 
 module "gcp_transit_firenet" {
   source                  = "terraform-aviatrix-modules/gcp-transit-firenet/aviatrix"
-  version                 = "1.1.0"
+  version                 = "3.0.0"
   account                 = "Shahzad-GCP"
   transit_cidr            = "10.0.0.0/24" 
   firewall_cidr           = "10.0.1.0/26"
