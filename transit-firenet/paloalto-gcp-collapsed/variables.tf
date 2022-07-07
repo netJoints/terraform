@@ -28,9 +28,6 @@ variable "gcp_region" {
   default     = "us-west2"
 }
 
-variable "storage_bucket_name" {
-  type = string
-}
 
 variable firewall_image {
   type = string
