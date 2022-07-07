@@ -45,11 +45,8 @@ module "firenet_1" {
   egress_cidr             = "10.12.0.0/24"
   egress_enabled          = true
   inspection_enabled      = true
-# instance_size           = var.fw_instance_size
   mgmt_cidr               = "10.13.0.0/24"
-# password                = "Aviatrix123!"
   }
-
 
 module "mc-spoke11" {
   source       = "terraform-aviatrix-modules/mc-spoke/aviatrix"
@@ -62,11 +59,9 @@ module "mc-spoke11" {
   inspection   = true
   transit_gw   = module.mc_transit.transit_gateway.gw_name
   ha_gw        = false
-# instance_size = var.instance_size
   single_az_ha  = false
 }
 
-  
 module "mc-spoke12" {
   source       = "terraform-aviatrix-modules/mc-spoke/aviatrix"
   version      = "1.2.3"
@@ -78,7 +73,6 @@ module "mc-spoke12" {
   inspection   = true
   transit_gw   = module.mc_transit.transit_gateway.gw_name
   ha_gw        = false
-# instance_size = var.instance_size
   single_az_ha  = false
 }
 
