@@ -38,13 +38,3 @@ variable firewall_image_version {
   default = "9.0.9"
 }
 
-variable firewall_instance_size {
-  type = string
-  default = null
-}
-
-variable instance_size {
-  type = string
-  default = null
-}
-
