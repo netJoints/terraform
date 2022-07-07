@@ -28,7 +28,6 @@ variable "gcp_region" {
   default     = "us-west2"
 }
 
-
 variable firewall_image {
   type = string
   default = "Palo Alto Networks VM-Series Next-Generation Firewall BUNDLE2"
@@ -37,6 +36,11 @@ variable firewall_image {
 variable firewall_image_version {
   type = string
   default = "9.0.9"
+}
+
+variable firewall_instance_size {
+  type = string
+  default = null
 }
 
 variable instance_size {
