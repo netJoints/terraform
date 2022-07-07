@@ -54,26 +54,34 @@ module "firenet_1" {
 }
   
 
-module "gcp-spoke1" {
-  source  = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-  version = "1.2.3"
-  cloud           = "gcp"
-  name            = "gcp-spoke1"
-  cidr            = "10.1.100.0/24"
-  region          = "us-central1"
-  account         = "shahzad-gcp"
-  transit_gw      = "gcp-transit-gw"
+module "mc-spoke11" {
+  source       = "terraform-aviatrix-modules/mc-spoke/aviatrix"
+  version      = "1.1.2"
+  account      = "shahzad-gcp"
+  cloud        = "gcp"
+  name         = "gcp-spoke11"
+  region       = "us-west2"
+  cidr         = "10.1.11.0/24"
+  inspection   = true
+  transit_gw   = module.mc_transit.transit_gateway.gw_name
+  ha_gw        = false
+  instance_size = var.instance_size
+  single_az_ha  = false
 }
 
-module "gcp-spoke2" {
-  source  = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-  version = "1.2.3"
-  cloud           = "gcp"
-  name            = "gcp-spoke2"
-  cidr            = "10.2.100.0/24"
-  region          = "us-central1"
-  account         = "shahzad-gcp"
-  transit_gw      = "gcp-transit-gw"
+  
+module "mc-spoke12" {
+  source       = "terraform-aviatrix-modules/mc-spoke/aviatrix"
+  version      = "1.1.2"
+  account      = "shahzad-gcp"
+  cloud        = "gcp"
+  name         = "gcp-spoke12"
+  region       = "us-west2"
+  cidr         = "10.1.12.0/24"
+  inspection   = true
+  transit_gw   = module.mc_transit.transit_gateway.gw_name
+  ha_gw        = false
+  instance_size = var.instance_size
+  single_az_ha  = false
 }
-
 
