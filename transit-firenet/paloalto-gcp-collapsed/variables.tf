@@ -20,10 +20,21 @@
 variable "gcp_project_name" {
   type        = string
   description = "GCP Project Name"
-  default = ""
+  default = "shahzad-gcp"
 }
 
 variable "gcp_region" {
   description = "Pick GCP Region"
-  default     = "us-west-2"
+  default     = "us-west2"
 }
+
+variable "storage_bucket_name" {
+  type = string
+}
+
+variable firewall_image {
+  type = string
+  default = "Palo Alto Networks VM-Series Next-Generation Firewall BYOL~9.1.3"
+}
+
+
