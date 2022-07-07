@@ -9,11 +9,6 @@ terraform {
       source = "AviatrixSystems/aviatrix"
       version = "~> 2.22.1"
     }
-    
-    google = {
-      source  = "hashicorp/google"
-      version = "4.14.0"
-    }
   }
   required_version = ">= 1.0.0"
 }
@@ -36,27 +31,26 @@ provider "aviatrix" {
 module "mc_transit" {
   source                 = "terraform-aviatrix-modules/mc-transit/aviatrix"
   version                = "v2.0.0"
-  cloud                  = var.cloud
-  cidr                   = var.vpcs["firenet"]
-  region                 = var.region
-  account                = var.account
+  cloud                  = "GCP"
+  cidr                   = "10.1.0.0/24"
+  region                 = "us-west2"
+  account                = "shahzad-gcp"
   enable_transit_firenet = true
-  lan_cidr = var.vpcs["lan"]
+  lan_cidr               = "10.11.0.0/24"
 }
 
 module "firenet_1" {
   source                  = "terraform-aviatrix-modules/mc-firenet/aviatrix"
   version                 = "1.0.0"
   transit_module          = module.mc_transit
-  firewall_image          = var.firewall_image
+  firewall_image          = " "
   firewall_image_version  = var.firewall_image_version
-  bootstrap_bucket_name_1 = var.storage_bucket_name
-  egress_cidr             = var.vpcs["egress"]
+  egress_cidr             = "10.12.0.0/24"
   egress_enabled          = true
   inspection_enabled      = true
   instance_size           = var.instance_size
-  mgmt_cidr               = var.vpcs["mgmt"]
-  password                = var.password
+  mgmt_cidr               = "10.12.0.0/24"
+  password                = "Aviatrix123!"
 }
   
 
