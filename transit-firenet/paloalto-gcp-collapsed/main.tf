@@ -1,5 +1,5 @@
 
-# Best-Pratice: Put this version info in version.tf file
+# Best-Pratice is to put ths version info in version.tf file and provider info in the provider.tf
 # I am using is here for quick and easy read
 
 
