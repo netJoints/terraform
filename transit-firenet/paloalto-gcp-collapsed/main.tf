@@ -1,7 +1,6 @@
 
-# Best-Pratice is to put ths version info in version.tf file and provider info in the provider.tf
-# I am using is here for quick and easy read
-
+# Best pratice is to put ths version info in version.tf and provider info in the provider.tf files.
+# I am using all in one file for quick and easy read.
 
 terraform {
   required_providers {
@@ -13,12 +12,10 @@ terraform {
   required_version = ">= 1.0.0"
 }
 
-
 # Specify Aviatrix as the provider with these parameters:
 # controller_ip - public IP address of the controller
 # username - login user name, default is admin
 # password - password
-# version - release version # of Aviatrix Terraform provider
 
 provider "aviatrix" {
     controller_ip = var.controller_ip
@@ -39,8 +36,7 @@ module "mc_transit" {
   lan_cidr               = "10.11.0.0/24"
 }
 
-  
- module "firenet_1" {
+module "firenet_1" {
   source                  = "terraform-aviatrix-modules/mc-firenet/aviatrix"
   version                 = "1.1.1"
   transit_module          = module.mc_transit
@@ -49,7 +45,7 @@ module "mc_transit" {
   egress_cidr             = "10.12.0.0/24"
   egress_enabled          = true
   inspection_enabled      = true
-# instance_size           = var.instance_size
+# instance_size           = var.fw_instance_size
   mgmt_cidr               = "10.13.0.0/24"
 # password                = "Aviatrix123!"
   }
