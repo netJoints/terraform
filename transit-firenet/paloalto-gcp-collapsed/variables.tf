@@ -34,6 +34,11 @@ variable firewall_image {
   default = "Palo Alto Networks VM-Series Next-Generation Firewall BYOL~9.1.3"
 }
 
+variable firewall_image_version {
+  type = string
+  default = ""
+}
+
 variable instance_size {
   type = string
   default =""
