@@ -7,7 +7,7 @@ terraform {
   required_providers {
     aviatrix = {
       source = "AviatrixSystems/aviatrix"
-      version = "~>2.21.2"
+      version = "~>2.22.0"
     }
   }
   required_version = ">= 1.0.0"
@@ -30,7 +30,7 @@ provider "aviatrix" {
 
 module "mc_transit" {
   source                 = "terraform-aviatrix-modules/mc-transit/aviatrix"
-  version                = "2.0.3"
+  version                = "2.1.5"
   cloud                  = "GCP"
   cidr                   = "10.1.0.0/24"
   region                 = "us-west2"
@@ -42,7 +42,7 @@ module "mc_transit" {
   
 # module "firenet_1" {
 #  source                  = "terraform-aviatrix-modules/mc-firenet/aviatrix"
-#  version                 = "1.0.2"
+#  version                 = "1.1.1"
 #  transit_module          = module.mc_transit
 #  firewall_image          = " "
 #  firewall_image_version  = var.firewall_image_version
@@ -57,7 +57,7 @@ module "mc_transit" {
 
 module "mc-spoke11" {
   source       = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-  version      = "1.1.3"
+  version      = "1.2.3"
   account      = "shahzad-gcp"
   cloud        = "GCP"
   name         = "gcp-spoke11"
@@ -73,7 +73,7 @@ module "mc-spoke11" {
   
 module "mc-spoke12" {
   source       = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-  version      = "1.1.3"
+  version      = "1.2.3"
   account      = "shahzad-gcp"
   cloud        = "GCP"
   name         = "gcp-spoke12"
