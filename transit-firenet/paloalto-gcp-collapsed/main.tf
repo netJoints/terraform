@@ -1,4 +1,3 @@
-
 # Best pratice is to put ths version info in version.tf and provider info in the provider.tf files.
 # I am using all in one file for quick and easy read.
 
