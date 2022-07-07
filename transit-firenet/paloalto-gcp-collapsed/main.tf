@@ -66,7 +66,7 @@ module "mc-spoke11" {
   inspection   = true
   transit_gw   = module.mc_transit.transit_gateway.gw_name
   ha_gw        = false
-  instance_size = var.instance_size
+# instance_size = var.instance_size
   single_az_ha  = false
 }
 
@@ -82,7 +82,7 @@ module "mc-spoke12" {
   inspection   = true
   transit_gw   = module.mc_transit.transit_gateway.gw_name
   ha_gw        = false
-  instance_size = var.instance_size
+# instance_size = var.instance_size
   single_az_ha  = false
 }
 
