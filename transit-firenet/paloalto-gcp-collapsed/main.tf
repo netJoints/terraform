@@ -44,14 +44,14 @@ module "mc_transit" {
   source                  = "terraform-aviatrix-modules/mc-firenet/aviatrix"
   version                 = "1.1.1"
   transit_module          = module.mc_transit
-  firewall_image          = " "
+  firewall_image          = var.firewall_image
   firewall_image_version  = var.firewall_image_version
   egress_cidr             = "10.12.0.0/24"
   egress_enabled          = true
   inspection_enabled      = true
-  instance_size           = var.instance_size
+# instance_size           = var.instance_size
   mgmt_cidr               = "10.12.0.0/24"
-  password                = "Aviatrix123!"
+# password                = "Aviatrix123!"
   }
 
 
