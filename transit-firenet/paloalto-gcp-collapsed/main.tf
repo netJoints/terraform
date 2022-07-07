@@ -50,7 +50,7 @@ module "mc_transit" {
   egress_enabled          = true
   inspection_enabled      = true
 # instance_size           = var.instance_size
-  mgmt_cidr               = "10.12.0.0/24"
+  mgmt_cidr               = "10.13.0.0/24"
 # password                = "Aviatrix123!"
   }
 
