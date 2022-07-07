@@ -31,16 +31,16 @@ variable "gcp_region" {
 
 variable firewall_image {
   type = string
-  default = "Palo Alto Networks VM-Series Next-Generation Firewall BYOL~9.1.3"
+  default = "Palo Alto Networks VM-Series Next-Generation Firewall BUNDLE2"
 }
 
 variable firewall_image_version {
   type = string
-  default = ""
+  default = "9.0.9"
 }
 
 variable instance_size {
   type = string
-  default =""
+  default = null
 }
 
