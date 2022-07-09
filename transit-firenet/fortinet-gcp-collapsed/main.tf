@@ -28,11 +28,12 @@ module "mc_transit" {
   source                 = "terraform-aviatrix-modules/mc-transit/aviatrix"
   version                = "2.1.5"
   cloud                  = "GCP"
-  cidr                   = "10.1.0.0/24"
+  name                   = "gcp-fortinet-transit"
+  cidr                   = "10.2.0.0/24"
   region                 = "us-west2"
   account                = "shahzad-gcp"
   enable_transit_firenet = true
-  lan_cidr               = "10.11.0.0/24"
+  lan_cidr               = "10.21.0.0/24"
 }
 
 module "firenet_1" {
@@ -41,34 +42,34 @@ module "firenet_1" {
   transit_module          = module.mc_transit
   firewall_image          = var.firewall_image
   firewall_image_version  = var.firewall_image_version
-  egress_cidr             = "10.12.0.0/24"
+  egress_cidr             = "10.22.0.0/24"
   egress_enabled          = true
   inspection_enabled      = true
-  mgmt_cidr               = "10.13.0.0/24"
+  mgmt_cidr               = "10.23.0.0/24"
   }
 
-module "mc-spoke11" {
+module "mc-spoke21" {
   source       = "terraform-aviatrix-modules/mc-spoke/aviatrix"
   version      = "1.2.3"
   account      = "shahzad-gcp"
   cloud        = "GCP"
-  name         = "gcp-spoke11"
+  name         = "gcp-spoke21"
   region       = "us-west2"
-  cidr         = "10.1.11.0/24"
+  cidr         = "10.2.21.0/24"
   inspection   = true
   transit_gw   = module.mc_transit.transit_gateway.gw_name
   ha_gw        = false
   single_az_ha  = false
 }
 
-module "mc-spoke12" {
+module "mc-spoke22" {
   source       = "terraform-aviatrix-modules/mc-spoke/aviatrix"
   version      = "1.2.3"
   account      = "shahzad-gcp"
   cloud        = "GCP"
-  name         = "gcp-spoke12"
+  name         = "gcp-spoke22"
   region       = "us-west2"
-  cidr         = "10.1.12.0/24"
+  cidr         = "10.2.22.0/24"
   inspection   = true
   transit_gw   = module.mc_transit.transit_gateway.gw_name
   ha_gw        = false
