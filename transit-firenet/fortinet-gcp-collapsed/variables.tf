@@ -31,10 +31,10 @@ variable "gcp_region" {
 # https://registry.terraform.io/providers/AviatrixSystems/aviatrix/latest/docs/resources/aviatrix_firewall_instance 
 variable firewall_image {
   type = string
-  default = "Fortinet FortiGate (PAYG_20190624) Next-Generation Firewall Latest Release"
+  default = "Fortinet FortiGate Next-Generation Firewall (BYOL)"
 }
 
 variable firewall_image_version {
   type = string
-  default = "7.0.4"
+  default = "7.0.5"
 }
