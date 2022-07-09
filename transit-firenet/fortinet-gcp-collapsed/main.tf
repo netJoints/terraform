@@ -74,3 +74,4 @@ module "mc-spoke22" {
   transit_gw   = module.mc_transit.transit_gateway.gw_name
   ha_gw        = false
   single_az_ha  = false
+}
